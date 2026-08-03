@@ -39,15 +39,3 @@ Aquí puedes ver el catálogo en acción — el scroll y los likes funcionando:
 
 👉 [Ver video demo](https://drive.google.com/file/d/1tePrecfi8DEosJ0CoUXZKh1muSNX7ngY/view?usp=sharing)
 
-## 🛠️ Detalles técnicos (por si te interesa el "por qué")
-
-| Criterio | Cómo se resolvió |
-|---|---|
-| **FlatList con `keyExtractor` correcto** | Cada producto tiene un `id` único en el arreglo de datos, y se usa ese `id` como key — nunca el índice de la lista. |
-| **`ProductCard` reutilizable** | Recibe el producto completo por props (`product`), sin datos "quemados" adentro del componente. |
-| **Estado de likes por producto** | El `useState` de los likes vive *dentro* de cada `ProductCard`. Como `FlatList` crea una instancia por producto, cada una tiene su propio estado aislado. |
-| **`View`, `Text`, `Image`, `Pressable`** | Usados en `ProductCard` para construir cada tarjeta: imagen, nombre, precio y el botón de like. |
-
-## 🙌 Hecho por
-
-Mariana T. B.
