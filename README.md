@@ -1,53 +1,53 @@
-# Welcome to your Expo app 👋
+# 📱 Catálogo de Productos — FlatList + useState
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+¡Hola! 👋 Este es un pequeño catálogo de productos hecho con React Native y Expo. La idea era practicar cómo mostrar listas largas de forma eficiente con `FlatList` y cómo manejar un estado independiente (los "me gusta") para cada elemento de la lista.
 
-## Get started
+## ✨ ¿Qué hace esta app?
 
-1. Install dependencies
+- Muestra un catálogo de 10 productos en una grilla de 2 columnas, con scroll fluido gracias a la virtualización de `FlatList`.
+- Cada tarjeta tiene su propio botón de "me gusta" ❤️ que lleva la cuenta de forma independiente — le das like a uno y los demás no se ven afectados.
+- El scroll es eficiente incluso si la lista creciera mucho más, porque `FlatList` solo renderiza lo que está visible en pantalla.
 
-   ```bash
-   npm install
-   ```
+## 🗂️ Cómo está organizado el proyecto
 
-2. Start the app
+product-catalog/
+├── app/(tabs)/index.tsx ← Punto de entrada de la app
+├── data/
+│ └── products.js ← Los datos de los productos
+├── components/
+│ ├── ProductCard.js ← La tarjeta individual de cada producto
+│ └── ProductList.js ← La lista que arma todo con FlatList
+└── README.md
 
-   ```bash
-   npx expo start
-   ```
+La idea detrás de esta organización: `ProductCard` es un componente "tonto" y reutilizable (solo pinta lo que le pasan), y `ProductList` se encarga de conectar los datos con la lista.
 
-In the output, you'll find options to open the app in a
+## 🚀 Cómo correrlo en tu máquina
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+1. Instala las dependencias (si no lo has hecho):
 ```bash
-npm run reset-project
+   npm install
 ```
+2. Levanta el proyecto:
+```bash
+   npx expo start
+```
+3. Escanea el código QR con la app **Expo Go** desde tu celular, o presiona `w` en la terminal para probarlo en el navegador.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🎥 Video demo
 
-## Learn more
+Aquí puedes ver el catálogo en acción — el scroll y los likes funcionando:
 
-To learn more about developing your project with Expo, look at the following resources:
+👉 [Ver video demo](https://drive.google.com/file/d/1tePrecfi8DEosJ0CoUXZKh1muSNX7ngY/view?usp=sharing)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 🛠️ Detalles técnicos (por si te interesa el "por qué")
 
-## Join the community
+| Criterio | Cómo se resolvió |
+|---|---|
+| **FlatList con `keyExtractor` correcto** | Cada producto tiene un `id` único en el arreglo de datos, y se usa ese `id` como key — nunca el índice de la lista. |
+| **`ProductCard` reutilizable** | Recibe el producto completo por props (`product`), sin datos "quemados" adentro del componente. |
+| **Estado de likes por producto** | El `useState` de los likes vive *dentro* de cada `ProductCard`. Como `FlatList` crea una instancia por producto, cada una tiene su propio estado aislado. |
+| **`View`, `Text`, `Image`, `Pressable`** | Usados en `ProductCard` para construir cada tarjeta: imagen, nombre, precio y el botón de like. |
 
-Join our community of developers creating universal apps.
+## 🙌 Hecho por
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-
-## Video demo
-https://drive.google.com/file/d/1tePrecfi8DEosJ0CoUXZKh1muSNX7ngY/view?usp=sharing
+Mariana T. B.
